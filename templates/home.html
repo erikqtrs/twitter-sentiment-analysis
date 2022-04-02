@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <header class="home_title">
+        <h1> Twitter Sentiment Analysis</h1>
+        <img src="{{ url_for( 'static', filename='img/logo.png' ) }}" alt="">
+    </header>
+    
+    <div class="forms">
+        <div class="form_tweet">
+            <form action="{{ url_for('predict_tweet') }}" method="post">
+                <header>
+                    <h2 class="form_title">
+                        Import Tweets
+                    </h2>
+                </header>
+                <div class="form_group">
+                    <label for="query">Query</label>
+                    <input 
+                        type="text" 
+                        name="query" 
+                        id="query" 
+                        placeholder="Enter a hashtag or query"
+                    >
+                </div>
+                <div class="form_group">
+                    <label for="items">Number of Tweets</label>
+                    <input type="number" name="items" placeholder="Enter the number of tweets">
+                </div>
+                <div class="form_group">
+                    <label for="lang">Choose a Languge</label>
+                    <select name="lang" id="lang">
+                        <option value="default">--Select a Language of Tweet--</option>
+                        <option value="es">Español</option>
+                        <option value="en">English</option>
+                    </select>
+                </div>
+                <input type="submit" value="Predict">
+            </form>
+        </div>
+
+        <div class="form_sentence">
+            <form action="{{ url_for('predict_sentence') }}" method="post">
+                <header>
+                    <h2 class="form_title">
+                        Input your own tweet
+                    </h2>
+                </header>
+
+                <div class="form_group">
+                    <label for="sentence">Tweet</label>
+                    <input type="text" name="sentence" placeholder="Input your own tweet">
+                </div>
+                <input type="submit" value="Predict">
+            </form>
+        </div>
+    </div>
+{% endblock %}

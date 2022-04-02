@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Sentence Sentiment Analysis
+{% endblock %}
+
+{% block content %}
+    <div class="sentence">
+        <table class="table">
+            <thead class="thead">
+                <tr class="row_head">
+                    <th>Tweet</th>
+                    <th colspan="3">Sentiment</th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                
+                <tr class="row_body">
+                    <td> {{analysis.text}} </td>
+                    {% if analysis.polarity == 'Positive' %}
+                        <td class="polarity_positive polarity"> {{analysis.polarity}} </td>
+                    {% elif analysis.polarity == 'Negative' %}
+                        <td class="polarity_negative polarity"> {{analysis.polarity}} </td>
+                    {% else %}
+                        <td class="polarity_neutral polarity"> {{analysis.polarity}} </td>
+                    {% endif %}
+                </tr>
+                  
+            </tbody>
+        </table>
+        <a href="{{ url_for('home') }}" class="btn_home"> Go to Home</a>
+    </div>
+    
+{% endblock %}
