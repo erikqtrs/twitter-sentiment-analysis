@@ -1,8 +1,12 @@
 from crypt import methods
 from flask import Flask, render_template, request
+import sys
+import logging
 from nlp.sentiment_analysis import tweet_sentiment, sentence_sentiment
 app = Flask(__name__)
 
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 @app.route('/')
 def home():
     return render_template('home.html')
