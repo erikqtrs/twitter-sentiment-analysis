@@ -1,8 +1,3 @@
-indian
-europarl_raw
-indian.zip
-senseval.zip
-stopwords.zip
 biocreative_ppi
 webtext.zip
 extended_omw
