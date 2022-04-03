@@ -6,7 +6,8 @@
 
 {% block content %}
     <div class="tweets">
-        <table class="table">
+        <div class="table_tweets">
+            <table class="table">
             <thead class="thead">
                 <tr class="row_head">
                     <th>Tweet</th>
@@ -28,6 +29,48 @@
                 {% endfor %}    
             </tbody>
         </table>
-        <a href="{{ url_for('home') }}" class="btn_home"> Go to Home</a>
+        </div>
+        
     </div>
+    <div class="graph">
+        <canvas class="grapic" id="myChart"></canvas>   
+    </div>
+         
+    
+    <a href="{{ url_for('home') }}" class="btn_home"> Go to Home</a>
+{% endblock %}
+    
+{% block javascript %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script>
+        
+        let data = {{ polarity_count|tojson }}
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: Object.keys(data),
+                datasets: [{
+                    label: 'Sentiment Analysis',
+                    data: Object.values(data),
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ],
+                    options: {
+                        lavels: {
+                            font: {
+                                size: 18,
+                                weight: 'bolder'
+                            }
+                        }
+                        
+
+                    }                      
+                    
+                }]
+            }
+        });
+    </script>
 {% endblock %}

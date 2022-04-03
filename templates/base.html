@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href={{ url_for('static', filename='./css/styles.css') }}>
-    <script src="https://kit.fontawesome.com/28a3eca647.js" crossorigin="anonymous"></script>
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <div class="container">
         {% block content %} {% endblock %}
+        {% block javascript %}{% endblock %}
     </div>
     <footer class="footer">
         <div class="social-media">

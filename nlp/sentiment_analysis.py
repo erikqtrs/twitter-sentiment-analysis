@@ -12,12 +12,13 @@ def tweet_sentiment(query, num_items, lang):
     for tweet in fetched_tweets:
         tweet_dict = {}
         text = tweet.text
+        text1 = tweet.text
         if translator.detect(text) != 'en':
             translation = translator.translate(text, dest='en')
             text = translation.text
         text_cleaned = clean_text(text)
         blob = TextBlob(text_cleaned)
-        tweet_dict['Text'] = text
+        tweet_dict['Text'] = text1
         sentiment = blob.sentiment.polarity
         if sentiment < 0:
             polarity = 'Negative'
@@ -53,4 +54,3 @@ def sentence_sentiment(text):
 
     return sentence_analysis
 
-        

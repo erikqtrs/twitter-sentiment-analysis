@@ -19,7 +19,21 @@ def predict_tweet():
         count = int(request.form.get('items'))
         lang = request.form.get('lang')
         tweets = tweet_sentiment(query, count, lang)
-        return render_template('tweets.html', tweets=tweets)
+        polarity_tweet = []
+        polarity_count = {}
+        for tweet in tweets:
+            polarity_tweet.append(tweet['Polarity'])
+        
+        for polarity in polarity_tweet:
+            if polarity in polarity_count:
+                polarity_count[polarity] += 1
+            else:
+                polarity_count[polarity] = 1
+            
+        return render_template('tweets.html', 
+            tweets=tweets,
+            polarity_count=polarity_count
+        )
 
 @app.route('/predict_sentence', methods=['POST'])
 def predict_sentence():
